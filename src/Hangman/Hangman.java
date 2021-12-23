@@ -5,11 +5,30 @@ import org.apache.groovy.parser.antlr4.util.StringUtils;
 import java.util.ArrayList;
 
 public class Hangman {
+    private static final Scanner Scanner = new Scanner (System.in);
     public static void main(String[] args) {
+        System.out.println("HANGMAN");
+
+        while (true) {
+            System.out.print("Type \"play\" to play game, \"exit\" to quit: ");
+            String input = Scanner.next().trim().toLowerCase();
+
+            if (input.equals("play")) {
+                game();
+                System.out.println();
+                continue;
+            }
+
+            if (input.equals("exit")) {
+                break;
+            }
+        }
+    }
+
+    private static void game() {
         ArrayList GuessedLetters = new ArrayList();
         Scanner Scanner = new Scanner(System.in);
         String[] ArrayWords = {"java", "python", "javascript", "kotlin"};
-        System.out.println("HANGMAN");
         int Random = new Random().nextInt(ArrayWords.length);
         String RepLetters = ArrayWords[Random];
         String temp_word = RepLetters.replaceAll("[a-z]", "-");
@@ -57,8 +76,8 @@ public class Hangman {
             return;
 
         }
-        System.out.println("Thanks for playing!");
-        System.out.println("Well see how well you did in the next stage");
+        System.out.println("Ypu guessed the word!");
+        System.out.println("You survived!");
     }
 
 }
