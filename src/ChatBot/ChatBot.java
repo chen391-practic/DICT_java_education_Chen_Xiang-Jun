@@ -23,5 +23,22 @@ public class ChatBot {
         for (int i = 0; i <= num; i++) {
             System.out.printf("%d!\n", i);
         }
+        System.out.println("Let's test your programming knowledge.");
+        System.out.println("Why do we use methods?");
+        System.out.println("1. To repeat a statement multiple times.\n" +
+                "2. To decompose a program into several small subroutines.\n" +
+                "3. To determine the execution time of a program.\n" +
+                "4. To interrupt the execution of a program.");
+        while (true) {
+            Scanner in = new Scanner(System.in);
+            System.out.print("");
+            int answer = Integer.parseInt(in.next());
+
+            if (answer == 2) {
+                break;
+            } else System.out.println("Please, try again.");
+        }
+        System.out.println("Great,you right!");
+        System.out.println("Goodbye,have a nice day!");
     }
 }
