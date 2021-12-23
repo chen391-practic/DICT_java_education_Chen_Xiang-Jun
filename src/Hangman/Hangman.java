@@ -18,10 +18,19 @@ public class Hangman {
         int i = 0;
         while (i < 8) {
             System.out.print("Input a letter:");
-            String User_input = Scanner.nextLine();
+            String User_input = Scanner.next();
+
+            if (!User_input.matches(".")) {
+                System.out.println("You should input a single letter");
+                continue;
+            }
+
+            if (!User_input.matches("[a-z]")) {
+                System.out.println("Please enter a lowercase English letter");
+                continue;
+            }
             if (GuessedLetters.contains(User_input.charAt(0))) {
-                System.out.println("No Improvements");
-                i++;
+                System.out.println("You've already guessed this letter");
                 continue;
             }
             if (!RepLetters.contains(User_input)) {
