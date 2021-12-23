@@ -1,27 +1,42 @@
 package Hangman;
 import java.util.Random;
-import java.util.Objects;
 import java.util.Scanner;
+import org.apache.groovy.parser.antlr4.util.StringUtils;
 
 public class Hangman {
     public static void main(String[] args) {
         Scanner Scanner = new Scanner(System.in);
         String[] ArrayWords = {"java", "python", "javascript", "kotlin"};
-        System.out.println("HANGMAN\nYou guess the word:");
+        System.out.println("HANGMAN");
         int Random = new Random().nextInt(ArrayWords.length);
         String RepLetters = ArrayWords[Random];
-        System.out.print(RepLetters.charAt(0));
-        System.out.print(RepLetters.charAt(1));
-        for (int i = 2; i < RepLetters.length(); i++) {
-            System.out.print("-");
+        String temp_word = RepLetters.replaceAll("[a-z]", "-");
+        StringBuilder BuildHideWords = new StringBuilder(temp_word);
+        System.out.println(BuildHideWords);
+        int i = 0;
+        while (i < 8) {
+            System.out.print("Input a letter:");
+            String User_input = Scanner.nextLine();
+
+            if (!RepLetters.contains(User_input)) {
+                System.out.println("That letter doesnt appear in the word!");
+                i++;
+            } else {
+                for (int z = 0; z < BuildHideWords.length(); z++) {
+                    if (RepLetters.charAt(z) == User_input.charAt(0)) {
+                        BuildHideWords.setCharAt(z, User_input.charAt(0));
+
+                    }
+                }
+                System.out.println(BuildHideWords);
+                long CheckLettersInWords = StringUtils.countChar(BuildHideWords.toString(), '-');
+                if (CheckLettersInWords == 0) break;
+
+            }
+
         }
-        System.out.println();
-        String user_input = Scanner.nextLine();
-        if (Objects.equals(user_input, RepLetters)) {
-            System.out.println("You survived!");
-        } else {
-            System.out.println("You lost!");
-        }
+        System.out.println("Thanks for playing!");
+        System.out.println("Well see how well you did in the next stage");
     }
 
 }
