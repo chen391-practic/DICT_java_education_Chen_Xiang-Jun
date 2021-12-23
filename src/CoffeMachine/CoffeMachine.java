@@ -70,16 +70,16 @@ public class CoffeMachine {
                 }
                 break;
             case "fill":
-                System.out.println("Write how many ml of water do you want to add:");
+                System.out.println("Write how many ml of water do you want to add: ");
                 this.WATER += Scanner.nextInt();
                 //
-                System.out.println("Write how many ml of milk do you want to add:");
+                System.out.println("Write how many ml of milk do you want to add: ");
                 this.MILK += Scanner.nextInt();
                 //
-                System.out.println("Write how many grams of coffee beans do you want to add:");
+                System.out.println("Write how many grams of coffee beans do you want to add: ");
                 this.BEANS += Scanner.nextInt();
                 //
-                System.out.println("Write how many disposable cups of coffee do you want to add:");
+                System.out.println("Write how many disposable cups of coffee do you want to add: ");
                 this.CUPS += Scanner.nextInt();
                 break;
             case "take":
