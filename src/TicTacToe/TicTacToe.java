@@ -31,6 +31,7 @@ public class TicTacToe {
         }
         return rows;
     }
+
     public static String[][] getCols(String[] GAMEBOARD) {
         String[][] colls = new String[3][3];
         for (int i = 0; i < 3; i++) {
@@ -42,7 +43,7 @@ public class TicTacToe {
     }
 
     public static boolean LineOf(String player, String[] line) {
-        String[] expected_Line = new String[] {player, player, player};
+        String[] expected_Line = new String[]{player, player, player};
         return Arrays.equals(line, expected_Line);
     }
 
@@ -80,11 +81,11 @@ public class TicTacToe {
     }
 
     public static String[] getRightDiagonal(String[] GAMEBOARD) {
-        return new String[] {GAMEBOARD[0], GAMEBOARD[4], GAMEBOARD[8]};
+        return new String[]{GAMEBOARD[0], GAMEBOARD[4], GAMEBOARD[8]};
     }
 
     public static String[] getLeftDiagonal(String[] GAMEBOARD) {
-        return new String[] {GAMEBOARD[2], GAMEBOARD[4], GAMEBOARD[6]};
+        return new String[]{GAMEBOARD[2], GAMEBOARD[4], GAMEBOARD[6]};
     }
 
     public static boolean isRightDiagonalOf(String player, String[] GAMEBOARD) {
@@ -146,7 +147,7 @@ public class TicTacToe {
     }
 
     public static boolean wrongNumberOfMoves(String[] GAMEBOARD) {
-        int movesDiff = count("X", GAMEBOARD) - count("O", GAMEBOARD) ;
+        int movesDiff = count("X", GAMEBOARD) - count("O", GAMEBOARD);
         return movesDiff < -1 || movesDiff > 1;
     }
 
@@ -161,12 +162,14 @@ public class TicTacToe {
     public static boolean isImpossible(String[] GAMEBOARD) {
         return isXWins(GAMEBOARD) && isOWins(GAMEBOARD) || wrongNumberOfMoves(GAMEBOARD);
     }
+
     public static String[] READGAMEBOARD() {
         System.out.print("Enter cells: ");
         Scanner SCANNER = new Scanner(System.in);
         String line = SCANNER.nextLine();
         return line.strip().split("");
     }
+
     public static void Board(String[] GAMEBOARD) {
         System.out.println("---------");
         for (int i = 0; i < 3; i++) {
@@ -178,6 +181,7 @@ public class TicTacToe {
         }
         System.out.println("---------");
     }
+
     public static String CkeckStatus(String[] gameState) {
         String STATUS = "Unknown game state";
 
@@ -195,12 +199,14 @@ public class TicTacToe {
 
         return STATUS;
     }
+
     public static Coordinates readUserMove() throws OutBoundsMoveException {
         Scanner scanner = new Scanner(System.in);
         int y = scanner.nextInt() - 1;
         int x = scanner.nextInt() - 1;
         return new Coordinates(x, y);
     }
+
     public static void makeUserMove(Coordinates move, String[] gameState) throws OccupiedCoordinateException {
         String target = gameState[move.y * 3 + move.x];
 
@@ -210,6 +216,7 @@ public class TicTacToe {
 
         gameState[move.y * 3 + move.x] = "X";
     }
+
 
     public static void USERMOVE(String[] GAMEBOARD) {
         try {
@@ -228,11 +235,27 @@ public class TicTacToe {
         }
     }
 
+    public static String[] emptyBoard() {
+        String[] board = new String[9];
+        Arrays.fill(board, " ");
+        return board;
+    }
+
+    public static void play() {
+        String[] gameState = emptyBoard();
+        String gameStatus = "";
+        String nextPlayer = "X";
+
+        while (gameStatus.equals("Game not finished")) {
+            Board(gameState);
+             nextPlayer = nextPlayer.equals("X") ? "O" : "X";
+        }
+
+        Board(gameState);
+        System.out.println(gameStatus);
+    }
 
     public static void main(String[] args) {
-        String[] GAMEBOARD = READGAMEBOARD();
-        Board(GAMEBOARD);
-        String status = CkeckStatus(GAMEBOARD);
-        System.out.println(status);
+        play();
     }
 }
